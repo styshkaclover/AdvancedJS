@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="shotrcut icon" href="img/favicon/gory.png">
+    <script src="https://kit.fontawesome.com/5502fe3f34.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="wrapper" id="app">
+        <header class="header__top">
+            <div class="container">
+                <div class="header__items">
+                    <div class="header__item">
+                        <a href="index.html" class="icon__link header__logo"><i
+                                class="fas fa-crow icon__logo"></i>Shop</a>
+                        <form action="#" class="header__form search-form" type="submit" @submit.prevent="filter">
+                            <button class="header__button btn-search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <input type="text" placeholder="Search" class="header__input input-text search-field"
+                                v-model="userSearch">
+                        </form>
+                    </div>
+                    <div class="header__item header__right">
+                        <a href="#" class="icon__link"><i class="fas fa-bars icon__fab"></i></a>
+                        <div class="header__basket_icon" @click="showBasket = !showBasket">
+                            <a href="#" class="icon__link btn-cart"><i class="fas fa-shopping-basket icon__fab"></i></a>
+                            <span id="basket-count">{{ basketCount }}</span>
+                        </div>
+                        <div class="header__basket" v-show="showBasket">
+                            <div class="header__basket_titles header__basket_product">
+                                <div> Наименование</div>
+                                <div>Кол-во</div>
+                                <div>Цена за шт.</div>
+                                <div>Всего</div>
+                            </div>
+                            <div v-if="!basketProducts.length" class="header__basket_product">Нет данных</div>
+                            <div class="header__basket_product header__basket_check cart-item"
+                                v-for="product of basketProducts" :key="product.id_product">
+                                <div>{{ product.product_name }}</div>
+                                <div class="product__count">{{ product.quantity }}</div>
+                                <div>{{ product.price }}</div>
+                                <div>&#8381; <span class="product__amount">{{ product.price * product.quantity }}</span>
+                                </div>
+                                <button class="del-btn" @click="removeProduct(product)">&times;</button>
+                            </div>
+                        </div>
+                        <a href="#" class="icon__link"><i class="far fa-address-book icon__fab"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="header__bottom">
+                <div class="container">
+                    <h3 class="header__title">Товары</h3>
+                </div>
+            </div>
+        </header>
+        <main class="body">
+            <div class="container">
+
+                <div class="products">
+
+                    <div class="product__item" v-for="product of filtered" :key="product.id_product">
+                        <img :src="imgCatalog" alt="ptoduct" class="product__img">
+                        <div class="product__block">
+                            <div>
+                                <h3 class="product__title">{{ product.product_name }}</h3>
+                                <p class="product__price">{{ product.price }}&#8381;</p>
+                            </div>
+                            <button class="button buy-btn" @click="addProduct(product)">Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="subscription">
+                <div class="container">
+                    <form action="#" class="some subscription__form" id="myform">
+                        <h3 class="subscription__title title">Свяжитесь с нами</h3>
+                        <div class="subscription__items">
+                            <label class="subscription__item">
+                                <h4 class="subscription__form_title">Имя</h4>
+                                <input type="text" name="name" id="name" placeholder="Иван" class="input-text">
+                            </label>
+                            <label class="subscription__item">
+                                <h4 class="subscription__form_title">Телефон</h4>
+                                <input type="tel" name="phone" id="phone" placeholder="+7 (999)999-9999"
+                                    class="input-text">
+                            </label>
+                            <label class="subscription__item">
+                                <h4 class="subscription__form_title">Email</h4>
+                                <input type="email" name="email" id="email" placeholder="my-mail@mail.ru"
+                                    class="input-text">
+                            </label>
+                            <label class="subscription__item">
+                                <h4 class="subscription__form_title">Комментарий</h4>
+                                <textarea name="comment" placeholder="Комментарий" class="input-text"></textarea>
+                            </label>
+                            <button class="subscription__form_button button" id="val-btn">Оставить
+                                заявку</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copy">
+                <div class="container">
+                    <div class="copy__items">
+                        <div class="copy__item">
+                            <p class="copy__item_copyright">&copy; 2021 Все права защищены.</p>
+                        </div>
+                        <div class="copy__item">
+                            <div class="copy__socialnetwork">
+                                <a href="#" class="icon__link" target="_blank"><i
+                                        class="fab fa-facebook-f icon__fab icon__copy"></i></a>
+                                <a href="#" class="icon__link" target="_blank"><i
+                                        class="fab fa-instagram icon__fab icon__copy"></i></a>
+                                <a href="#" class="icon__link" target="_blank"><i
+                                        class="fab fa-pinterest-p icon__fab icon__copy"></i></a>
+                                <a href="#" class="icon__link" target="_blank"><i
+                                        class="fab fa-twitter icon__fab icon__copy"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        window.onload = () => {
+            document.getElementById('myform').addEventListener('submit', e => {
+                let valid = new Validator('myform');
+                if (!valid.valid) {
+                    e.preventDefault();
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+// css reset
+
+@import "vars"
+
+*
+    margin: 0
+    padding: 0
+    border: 0
+
+*,
+*::before,
+*::after
+    box-sizing: border-box
+
+html,
+body
+    height: 100%
+    width: 100%
+    font-size: 100%
+    font-size: 14px
+    line-height: 18px
+
+body
+    font-family: sans-serif
+    font-weight: 400
+    color: $color-text-primary
+
+a
+    color: $color-text-primary
+
+a,
+a:visited
+    text-decoration: none
+
+a:hover
+    text-decoration: none
+
+textarea,
+input:focus
+    outline: none
+
+input::ms-clear
+    display: none
+// for all pages
+
+.wrapper
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+
+.body
+    flex-grow: 1
+    scroll-behavior: smooth
+    line-height: 1
+
+.container
+    max-width: $width-site
+    margin: 0 auto
+    padding: 0 2%
+
+.content
+    padding: 3% 2% 0
+
+.color-accent
+    color: $color-accent
+
+.hidden
+    visibility: hidden
+
+.button
+    font-size: 16px
+    line-height: 19px
+    padding: 10px 22px
+    border: 1px solid $color-primary
+    background-color: $color-primary
+    color: $color-white
+    text-transform: uppercase
+    cursor: pointer
+    transition: opacity 0.3s
+    display: inline-block
+
+    &:hover
+        opacity: 0.8
+
+.input-text
+    font-size: 13px
+    line-height: 16px
+    padding: 12px 22px
+    background-color: $color-white
+    margin-top: 15px
+
+    &:focus
+        box-shadow: 5px 2px 30px rgba(0, 0, 0, 0.05)
+
+.icon
+    &__logo
+        color: $color-white
+        font-size: 28px
+        width: 51px
+        padding: 9px 0px
+        text-align: center
+    &__link
+    &__fab
+        color: $color-white
+        font-size: 28px
+        width: 51px
+        padding: 9px 0px
+        text-align: center
+        transition: color 0.3s
+
+        &:hover
+            color: $color-dark-primary
+    &__copy
+        display: inline-block
+        color: $color-dark-primary
+        background: $color-white
+        font-size: 18px
+        width: 40px
+        padding: 12px 0
+        margin: 0px 5px
+        transition: color, background 0.3s
+
+        &:hover
+            background: $color-primary
+            color: $color-white
+
+// header
+.header
+    &__top
+        background-color: $color-primary
+
+    &__items
+        display: flex
+        justify-content: space-between
+        margin: 5px 0 12px
+    &__item
+        display: flex
+        align-items: flex-end
+        & a + a
+            margin-left: 15px
+    &__button
+        padding: 9px 13px
+        border-top-left-radius: 20px
+        border-bottom-left-radius: 20px
+        background-color: $color-accent
+        color: $color-white
+        font-size: 16px
+        line-height: 20px
+        transition: all 0.3s
+        cursor: pointer
+        &:hover
+            opacity: 0.8
+
+    &__input
+        padding: 9px 22px
+        border-top-right-radius: 20px
+        border-bottom-right-radius: 20px
+        background-color: $color-light-primary
+        border-color: transparent
+        font-size: 16px
+        line-height: 20px
+
+    &__right
+        position: relative
+        display: flex
+    &__logo
+        color: $color-white
+        text-transform: uppercase
+        font-size: 21px
+        transition: color 0.3s
+        margin-right: 22px
+
+    &__bottom
+        background-color: #F8F3F4
+    &__title
+        font-size: 24px
+        line-height: 28px
+        color: $color-dark-primary
+        text-transform: uppercase
+        padding: 50px 0 60px
+
+    &__basket
+        &_icon
+            position: relative
+            & span
+                position: absolute
+                display: inline-block
+                width: 19px
+                height: 19px
+                color: $color-white
+                background: $color-accent
+                border-radius: 50%
+                text-align: center
+                right: -1px
+                top: -2px
+                font-size: 12px
+                line-height: 19px
+    &__basket
+        position: absolute
+        right: 0
+        top: 58px
+        background-color: $color-white
+        box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21)
+        padding: 15px
+        min-width: 500px
+        z-index: 1
+
+        &__titles
+            font-weight: 550
+
+        &_product
+            display: grid
+            grid-template-columns: 1.5fr repeat(3, 1fr) 0.6fr
+            grid-gap: 5%
+            padding: 10px 0
+            border-bottom: 1px solid #ebebeb
+
+        &_empty
+
+        &_total
+            text-align: right
+            font-weight: 550
+            padding: 10px
+            &-amound
+.del-btn
+    cursor: pointer
+    color: $color-dark-primary
+    transition: background-color 0.3s
+    &:hover
+        background-color: $color-light-primary
+
+// body
+// products
+
+.products
+    margin-top: 64px
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: 2%
+
+.product
+    &__item
+        border: 1px solid $color-light-primary
+    &__img
+        width: 100%
+        height: 323px
+        object-fit: cover
+    &__block
+        padding: 24px 18px
+        background-color: $color-light-primary
+        display: flex
+        justify-content: space-between
+    &__title
+
+        text-transform: uppercase
+    &__price
+        margin-top: 10px
+        font-weight: 600
+        font-size: 17px
+        color: $color-dark-primary
+.buy-btn
+    margin-top: 10px
+
+// footer
+
+.footer
+    margin-top: 96px
+    background-color: $color-dark-primary
+
+.subscription
+    background-color: $color-light-primary
+    padding: 40px 0
+    &__title
+        text-align: center
+        font-size: 24px
+        line-height: 28px
+        color: $color-dark-primary
+        text-transform: uppercase
+    &__form
+        display: flex
+        flex-direction: column
+        align-items: center
+        &_title
+            margin-top: 15px
+            color: $color-dark-primary
+            text-transform: uppercase
+        &_button
+            margin-top: 32px
+    &__items
+        display: flex
+        flex-direction: column
+        width: 50%
+
+.error-msg
+    color: #d11a3c79
+    margin: 10px 0
+
+.invalid
+    background-color: #d11a3b63
+
+.valid
+    background-color: #1fc4435b
+.subscription__item
+    display: flex
+    flex-direction: column
+
+.copy
+    margin: 20px 0
+    &__items
+        display: flex
+        justify-content: space-between
+        align-items: center
+        color: $color-white
+        font-size: 16px
