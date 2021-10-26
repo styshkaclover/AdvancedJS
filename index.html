@@ -17,38 +17,18 @@
                     <div class="header__item">
                         <a href="index.html" class="icon__link header__logo"><i
                                 class="fas fa-crow icon__logo"></i>Shop</a>
-                        <form action="#" class="header__form search-form" type="submit" @submit.prevent="filter">
-                            <button class="header__button btn-search">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <input type="text" placeholder="Search" class="header__input input-text search-field"
-                                v-model="userSearch">
-                        </form>
+                        <search></search>
                     </div>
                     <div class="header__item header__right">
-                        <a href="#" class="icon__link"><i class="fas fa-bars icon__fab"></i></a>
+                       <a href="#" class="icon__link"><i class="fas fa-bars icon__fab"></i></a>
                         <div class="header__basket_icon" @click="showBasket = !showBasket">
                             <a href="#" class="icon__link btn-cart"><i class="fas fa-shopping-basket icon__fab"></i></a>
                             <span id="basket-count">{{ basketCount }}</span>
                         </div>
-                        <div class="header__basket" v-show="showBasket">
-                            <div class="header__basket_titles header__basket_product">
-                                <div> Наименование</div>
-                                <div>Кол-во</div>
-                                <div>Цена за шт.</div>
-                                <div>Всего</div>
-                            </div>
-                            <div v-if="!basketProducts.length" class="header__basket_product">Нет данных</div>
-                            <div class="header__basket_product header__basket_check cart-item"
-                                v-for="product of basketProducts" :key="product.id_product">
-                                <div>{{ product.product_name }}</div>
-                                <div class="product__count">{{ product.quantity }}</div>
-                                <div>{{ product.price }}</div>
-                                <div>&#8381; <span class="product__amount">{{ product.price * product.quantity }}</span>
-                                </div>
-                                <button class="del-btn" @click="removeProduct(product)">&times;</button>
-                            </div>
-                        </div>
+
+                        <cart :cart-items="basketProducts" :visibility="showBasket" @remove-product="removeProduct">
+                        </cart>
+
                         <a href="#" class="icon__link"><i class="far fa-address-book icon__fab"></i></a>
                     </div>
                 </div>
@@ -62,19 +42,8 @@
         <main class="body">
             <div class="container">
 
-                <div class="products">
-
-                    <div class="product__item" v-for="product of filtered" :key="product.id_product">
-                        <img :src="imgCatalog" alt="ptoduct" class="product__img">
-                        <div class="product__block">
-                            <div>
-                                <h3 class="product__title">{{ product.product_name }}</h3>
-                                <p class="product__price">{{ product.price }}&#8381;</p>
-                            </div>
-                            <button class="button buy-btn" @click="addProduct(product)">Купить</button>
-                        </div>
-                    </div>
-                </div>
+                <products :products="filtered" :img="imgCatalog" @add-product="addProduct"></products>
+                
             </div>
         </main>
         <footer class="footer">
@@ -131,8 +100,11 @@
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ProductComponent.js"></script>
+    <script src="js/CartComponent.js"></script>
+    <script src="js/FilterComponent.js"></script>
     <script src="js/main.js"></script>
-    <script>
+<!--     <script>
         window.onload = () => {
             document.getElementById('myform').addEventListener('submit', e => {
                 let valid = new Validator('myform');
@@ -141,7 +113,7 @@
                 }
             })
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
